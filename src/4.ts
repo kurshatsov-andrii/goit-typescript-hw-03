@@ -29,14 +29,14 @@ class Person {
 }
 
 abstract class House {
-  protected door: boolean;
+  protected door: boolean = false;
   protected key: Key;
   private tenants: Person[] = [];
   abstract openDoor(key: Key): void;
   constructor(key: Key) {
     this.key = key;
   }
-  comeIn(person: Person) {
+  comeIn(person: Person): void {
     if (this.door) {
       this.tenants.push(person);
       console.log('Ви ввійшли до будинку.');
@@ -47,7 +47,7 @@ abstract class House {
 }
 
 class MyHouse extends House {
-  openDoor(key: Key) {
+  openDoor(key: Key): void {
     if (key.getSignature() === this.key.getSignature()) {
       this.door = true;
       console.log('Двері відчинено.');
